@@ -27,30 +27,24 @@ void main() {
                 case 1:
                     registrarPersona();
                     break;
-
                 case 2:
                     mostrarRegistros();
                     break;
-
                 case 3:
                     actualizarRegistro();
                     break;
-
                 case 4:
                     eliminarRegistro();
                     break;
-
                 case 5:
                     System.out.println("Saliendo del sistema...");
                     break;
-
                 default:
                     System.out.println("Error: opcion invalida.");
             }
         } catch (Exception e) {
             System.out.println("Error: debe ingresar solo numeros.");
             sc.nextLine();
-
         }
     }while(opcion != 5);
 
@@ -140,5 +134,37 @@ public void registrarPersona(){
 
     } catch (Exception e){
         System.out.println("Error al ingresar datos!");
+    }
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////MOSTRAR///////////////////////////////////////////////*/
+
+public void mostrarRegistros(){
+    if (personas.isEmpty()) {
+
+        System.out.println("No existen registros.");
+        return;
+    }
+    System.out.println("\n===== LISTA DE PERSONAS =====");
+
+    for (int i = 0; i < personas.size(); i++) {
+        System.out.println("\nRegistro #" + i);
+        personas.get(i).mostrarDatos();
+        System.out.println("------------------------");
+    }
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////ACTUALIZAR///////////////////////////////////////////////*/
+
+public void actualizarRegistro(){
+    if (personas.isEmpty()) {
+        System.out.println("No existen registros.");
+        return;
+    }
+    try{
+        mostrarRegistros();
+        
     }
 }
