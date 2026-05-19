@@ -50,7 +50,7 @@ void main() {
 
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////METODOS///////////////////////////////////////////////*/
+/*/////////////////////////////////////////////FUNCIONES//////////////////////////////////////////////*/
 
 public void registrarPersona(){
     try{
@@ -165,6 +165,62 @@ public void actualizarRegistro(){
     }
     try{
         mostrarRegistros();
-        
+        System.out.print("Ingrese posicion a actualizar: ");
+        int pos = sc.nextInt();
+        sc.nextLine();
+        if (pos < 0 || pos >= personas.size()) {
+
+            System.out.println("Registro no encontrado.");
+            return;
+        }
+        System.out.println("\n1. Estudiante");
+        System.out.println("2. Docente");
+        System.out.print("Seleccione nuevo tipo: ");
+        int tipo = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nueva cedula: ");
+        String cedula = sc.nextLine();
+        System.out.print("Nuevo nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Nueva edad: ");
+        int edad = sc.nextInt();
+        sc.nextLine();
+        if (tipo == 1) {
+            System.out.print("Nueva carrera: ");
+            String carrera = sc.nextLine();
+            Estudiante est = new Estudiante(
+                    cedula,
+                    nombre,
+                    edad,
+                    carrera
+            );
+
+            personas.set(pos, est);
+
+        } else if (tipo == 2) {
+
+            System.out.print("Nueva asignatura: ");
+            String asignatura = sc.nextLine();
+
+            Docente doc = new Docente(
+                    cedula,
+                    nombre,
+                    edad,
+                    asignatura
+            );
+
+            personas.set(pos, doc);
+
+        } else {
+
+            System.out.println("Tipo invalido.");
+            return;
+        }
+        System.out.println("Registro actualizado correctamente.");
+    } catch (Exception e) {
+        System.out.println("Error al actualizar.");
+        sc.nextLine();
+
     }
 }
+
