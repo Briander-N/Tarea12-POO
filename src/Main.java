@@ -224,3 +224,44 @@ public void actualizarRegistro(){
     }
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////ELIMINAR//////////////////////////////////////////////*/
+
+public void eliminarRegistro(){
+    if (personas.isEmpty()) {
+        System.out.println("No existen registros.");
+        return;
+    }
+
+    try{
+        mostrarRegistros();
+
+        System.out.print("Ingrese posicion a eliminar: ");
+        int pos = sc.nextInt();
+        sc.nextLine();
+
+        if (pos < 0 || pos >= personas.size()) {
+
+            System.out.println("Registro no encontrado.");
+            return;
+        }
+
+        System.out.println("Seguro que deseas eliminar? (s/n): ");
+        String confirmacion = sc.nextLine();
+
+        if (confirmacion.equalsIgnoreCase("s")) {
+            personas.remove(pos);
+            System.out.println("Registro eliminado correctamente.");
+
+        } else {
+            System.out.println("Eliminacion cancelada.");
+        }
+
+    }catch (Exception e) {
+
+        System.out.println("Error al eliminar.");
+        sc.nextLine();
+
+    }
+}
+
