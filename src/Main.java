@@ -8,8 +8,6 @@ ArrayList<Persona> personas = new ArrayList<>();
 
 void main() {
 
-
-
     int opcion = 0;
 
     do{
@@ -59,3 +57,88 @@ void main() {
 }
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////METODOS///////////////////////////////////////////////*/
+
+public void registrarPersona(){
+    try{
+        System.out.println("\n");
+        System.out.println("1.Estudiante");
+        System.out.println("2.Docente");
+        System.out.println("Selecciona tipo: ");
+
+        int tipo = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Ingrese cedula: ");
+        String cedula = sc.nextLine();
+
+        if(cedula.isEmpty()){
+            System.out.println("Este campo no puede estar vacio!!");
+            return;
+
+        }
+
+        for(Persona p : personas){
+            if (p.getCedula().equals(cedula)) {
+                System.out.println("Cedula ya registrada.");
+                return;
+            }
+        }
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = sc.nextLine();
+
+        if (nombre.isEmpty()) {
+            System.out.println("El nombre no puede quedar vacio!.");
+            return;
+        }
+
+        System.out.println("Ingrese edad: ");
+        int edad = sc.nextInt();
+        sc.nextLine();
+
+        if(tipo == 1){
+            System.out.print("Ingrese carrera: ");
+            String carrera = sc.nextLine();
+
+            if (carrera.isEmpty()) {
+                System.out.println("Campo obligatorio.");
+                return;
+            }
+
+            Estudiante est = new Estudiante(
+                    cedula,
+                    nombre,
+                    edad,
+                    carrera
+            );
+
+            personas.add(est);
+
+            System.out.println("Estudiante registrado correctamente.");
+
+        } else if (tipo == 2) {
+
+            System.out.print("Ingrese asignatura: ");
+            String asignatura = sc.nextLine();
+            if (asignatura.isEmpty()) {
+                System.out.println("Campo obligatorio.");
+                return;
+            }
+            Docente doc = new Docente(
+                    cedula,
+                    nombre,
+                    edad,
+                    asignatura
+            );
+
+            personas.add(doc);
+            System.out.println("Docente registrado correctamente.");
+
+        } else {
+            System.out.println("Tipo invalido.");
+        }
+
+    } catch (Exception e){
+        System.out.println("Error al ingresar datos!");
+    }
+}
